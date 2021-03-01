@@ -8,6 +8,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+//go:generate bash -c "ls -d -- */)"
+
 var desc = "Govel is a web framework written in golang based on Laravel"
 
 var rootCmd = &cobra.Command{

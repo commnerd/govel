@@ -1,14 +1,19 @@
 package new
 
 import (
+	"encoding/hex"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
-	"os/exec"
 	"strings"
 
 	"github.com/spf13/cobra"
 )
+
+//go:generate bash -c "cd ../../cmd && go build ."
+//go:generate bash -c "cd ../../scripts && go run ."
+//go:generate bash -c "rm ../../cmd/cmd"
 
 var desc = "Generate a new Govel application."
 
@@ -53,12 +58,16 @@ func bootstrapDirectoryStructure(baseDir string) {
 func addBaseFiles(baseDir string) {
 	writeFile(baseDir+"/main.go", MAIN_GO)
 	writeFile(baseDir+"/config/main.yml", CONFIG_MAIN)
+	writeFile()
 }
 
 func addCmd(baseDir string) {
+	binary, _ := hex.DecodeString(cmdTool)
 	fmt.Printf("Placing 'cmd' into '%s' project.\n", baseDir)
-	c := exec.Command("go", "build", "-o", baseDir, "github.com/commnerd/govel/cmd")
-	cobra.CheckErr(c.Run())
+	err := ioutil.WriteFile(
+		strings.Join(strings.Split(baseDir+"/cmd", "/"), string(os.PathSeparator)),
+		binary, 0755)
+	cobra.CheckErr(err)
 }
 
 func writeFile(path, contents string) {
