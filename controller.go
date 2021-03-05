@@ -1,3 +1,3 @@
-package framework
+package govel
 
 type Controller struct{}

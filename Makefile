@@ -8,7 +8,8 @@ tool cli:
 bin: tool cli
 	mkdir bin
 	rm tool/tool
-	mv cli/cli bin
+	mv cli/cli bin/govel
+	cd bin && ./govel new test
 
 clean:
 	rm -fR ./bin

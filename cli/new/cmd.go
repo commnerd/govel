@@ -26,7 +26,6 @@ var Cmd = &cobra.Command{
 		baseDir := args[0]
 		bootstrapDirectoryStructure(baseDir)
 		addBaseFiles(baseDir)
-		addCmd(baseDir)
 	},
 }
 
@@ -58,9 +57,12 @@ func addBaseFiles(baseDir string) {
 	writeFile(baseDir+"/config/main.yml", CONFIG_MAIN)
 	writeFile(baseDir+"/controllers/root.go", CONTROLLERS_ROOT)
 	writeFile(baseDir+"/routes/web.go", ROUTES_WEB)
+	writeFile(baseDir+"/go.mod", fmt.Sprintf(GOMOD, baseDir, baseDir))
+	addTool(baseDir)
+
 }
 
-func addCmd(baseDir string) {
+func addTool(baseDir string) {
 	binary, _ := hex.DecodeString(TOOL_BIN)
 	fmt.Printf("Placing 'cmd' into '%s' project.\n", baseDir)
 	err := ioutil.WriteFile(
@@ -70,12 +72,16 @@ func addCmd(baseDir string) {
 }
 
 func writeFile(path, contents string) {
-	path = strings.Join(strings.Split(path, "/"), string(os.PathSeparator))
+	splitPath := strings.Split(path, "/")
+	fileName := splitPath[len(splitPath)-1]
+	baseDir := strings.Join(splitPath[0:len(splitPath)-1], string(os.PathSeparator))
+	path = strings.Join(splitPath, string(os.PathSeparator))
 	f, err := os.Create(path)
 	cobra.CheckErr(err)
 
 	defer f.Close()
 
+	fmt.Printf("Placing '%s' into '%s' project.\n", fileName, baseDir)
 	byteContents := []byte(contents)
 	_, err = f.Write(byteContents)
 	cobra.CheckErr(err)
