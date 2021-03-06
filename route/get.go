@@ -1,11 +1,11 @@
-package Route
+package route
 
 import "net/http"
 
-func Get(route, handler string) *route {
+func Get(rt, handler string) *route {
 	return &route{
 		method:  http.MethodGet,
-		route:   route,
+		route:   rt,
 		handler: handler,
 	}
 }

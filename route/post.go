@@ -1,11 +1,11 @@
-package Route
+package route
 
 import "net/http"
 
-func Post(route, handler string) *route {
+func Post(rt, handler string) *route {
 	return &route{
 		method:  http.MethodPost,
-		route:   route,
+		route:   rt,
 		handler: handler,
 	}
 }

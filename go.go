@@ -1,15 +1,13 @@
 package govel
 
 import (
-	"fmt"
-	"log"
-	"os"
+	"github.com/commnerd/govel/app"
+	"github.com/commnerd/govel/server"
+	_ "github.com/commnerd/govel/server"
 )
 
 func Go() {
-	path, err := os.Getwd()
-	if err != nil {
-		log.Println(err)
-	}
-	fmt.Println(path)
+	app.Bootstrap()
+
+	server.Serve()
 }

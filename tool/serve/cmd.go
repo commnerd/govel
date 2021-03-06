@@ -25,9 +25,9 @@ var Cmd = &cobra.Command{
 		splitPath := strings.Split(path, string(os.PathSeparator))
 		path = splitPath[len(splitPath)-1]
 
-		cmdCmd := strings.Join(strings.Split(fmt.Sprintf("./%s", path), "/"), string(os.PathSeparator))
-		fmt.Println("Running " + cmdCmd)
-		c = exec.Command(cmdCmd)
+		toolCmd := "." + string(os.PathSeparator) + path
+		fmt.Println("Running " + toolCmd)
+		c = exec.Command(toolCmd)
 		cobra.CheckErr(c.Run())
 	},
 }

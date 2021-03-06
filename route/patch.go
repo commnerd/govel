@@ -1,11 +1,11 @@
-package Route
+package route
 
 import "net/http"
 
-func Patch(route, handler string) *route {
+func Patch(rt, handler string) *route {
 	return &route{
 		method:  http.MethodPatch,
-		route:   route,
+		route:   rt,
 		handler: handler,
 	}
 }
