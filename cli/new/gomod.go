@@ -1,12 +1,16 @@
 package new
 
-const GOMOD = `
-module %s
+const GOMOD = `module %s
 
 go 1.15
 
 replace (
+	govel => ../../
 	%s => ./
-	github.com/commnerd/govel => ../../
 )
+
+require (
+	github.com/stretchr/testify v1.7.0
+)
+
 `

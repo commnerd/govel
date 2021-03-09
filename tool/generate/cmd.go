@@ -3,6 +3,8 @@ package generate
 import (
 	"fmt"
 
+	"github.com/commnerd/govel/tool/generate/controller"
+	"github.com/commnerd/govel/tool/generate/route"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +21,7 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(route.Cmd)
+	rootCmd.AddCommand(controller.Cmd)
 }
 
 func main() {

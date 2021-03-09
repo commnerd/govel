@@ -1,11 +1,7 @@
 package app
 
-import (
-	"github.com/commnerd/govel/config"
-	_ "github.com/commnerd/govel/router"
-)
-
-func Bootstrap() {
-	config.Inject(App)
-	// router.Inject(app)
+func (a *application) Bootstrap() error {
+	return nil
 }
+
+var Bootstrap = instance.Bootstrap

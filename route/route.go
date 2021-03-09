@@ -1,9 +1,10 @@
 package route
 
+import "github.com/commnerd/govel/response"
+
 type route struct {
-	method  string
-	path    string
-	route   string
-	name    string
-	handler string
+	path      string
+	methodMap map[string]func(...interface{}) response.Response
+	name      string
+	only      []string
 }

@@ -8,4 +8,16 @@ type Config struct {
 	*viper.Viper
 }
 
-var conf *Config
+var instance *Config
+
+func New() *Config {
+	return &Config{
+		Viper: viper.New(),
+	}
+}
+
+func init() {
+	instance = New()
+
+	build()
+}

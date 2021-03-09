@@ -9,15 +9,11 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-
-	"github.com/spf13/viper"
 )
 
 var configPath string
 
-func init() {
-	conf = &Config{Viper: viper.New()}
-
+func build() {
 	sep := string(os.PathSeparator)
 
 	path, err := os.Getwd()
@@ -79,7 +75,7 @@ func populateConfig() {
 
 	// (*Config).ReadConfig(bytes.NewBuffer([]byte(config)))
 
-	conf.Viper.ReadConfig(bytes.NewBuffer([]byte(config)))
+	instance.ReadConfig(bytes.NewBuffer([]byte(config)))
 
 	// fmt.Println(file)
 	// fmt.Println(viper.AllKeys())

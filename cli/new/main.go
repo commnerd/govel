@@ -1,13 +1,14 @@
 package new
 
-const MAIN_GO = `
-package main
+const MAIN_GO = `package main
 
 import (
-    "github.com/commnerd/govel"
+    "govel"
+    "%s/controllers"
 )
 
 func main() {
+    controllers.Init()
     govel.Go()
 }
 `

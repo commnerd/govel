@@ -1,3 +1,11 @@
 package govel
 
-type Controller struct{}
+import "net/http"
+
+type controllerInterface interface {
+	GetRequest() http.Request
+}
+
+type Controller struct {
+	controllerInterface
+}

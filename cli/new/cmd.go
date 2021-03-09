@@ -43,6 +43,7 @@ func bootstrapDirectoryStructure(baseDir string) {
 		"routes",
 		"storage",
 		"tests",
+		"tests/controllers",
 	}
 
 	for _, subDir := range subDirs {
@@ -53,11 +54,13 @@ func bootstrapDirectoryStructure(baseDir string) {
 }
 
 func addBaseFiles(baseDir string) {
-	writeFile(baseDir+"/main.go", MAIN_GO)
+	writeFile(baseDir+"/main.go", fmt.Sprintf(MAIN_GO, baseDir))
 	writeFile(baseDir+"/config/main.yml", CONFIG_MAIN)
 	writeFile(baseDir+"/controllers/root.go", CONTROLLERS_ROOT)
+	writeFile(baseDir+"/controllers/init.go", CONTROLLERS_INIT)
 	writeFile(baseDir+"/routes/web.go", ROUTES_WEB)
 	writeFile(baseDir+"/go.mod", fmt.Sprintf(GOMOD, baseDir, baseDir))
+	writeFile(baseDir+"/tests/controllers/root_test.go", fmt.Sprintf(TESTS_CONTROLLERS_ROOT, baseDir))
 	addTool(baseDir)
 
 }

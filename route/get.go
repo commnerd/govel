@@ -2,10 +2,6 @@ package route
 
 import "net/http"
 
-func Get(rt, handler string) *route {
-	return &route{
-		method:  http.MethodGet,
-		route:   rt,
-		handler: handler,
-	}
+func Get(path, handler string) *route {
+	return craft(path, handler, http.MethodGet)
 }
