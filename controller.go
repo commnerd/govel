@@ -1,3 +1,3 @@
 package govel
 
-type Controller struct{}
+type Controller interface{}

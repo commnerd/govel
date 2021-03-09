@@ -1,50 +1,30 @@
 package app
 
 import (
-	"log"
-	"os"
-	"path/filepath"
-
-	"github.com/commnerd/govel/config"
+	"github.com/spf13/viper"
 )
 
-type application struct {
-	children map[string]interface{}
+type application struct{
+	*viper.Viper
 }
 
-var App = &application{
-	children: make(map[string]interface{}),
-}
-
-func (a *application) Get(label string) interface{} {
-	return a.children[label]
-}
-
-var Get = App.Get
-
-func (a *application) Set(label string, item interface{}) {
-	a.children[label] = item
-}
-
-var Set = App.Set
-
-func (a *application) RootPath() string {
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		log.Fatal(err)
-	}
-	return dir
-}
-
-var RootPath = App.RootPath
-
-func (a *application) GetConfig() *config.Config {
-	switch config := a.Get("*config.Config").(type) {
-	case *config.Config:
-		return config
-	default:
-		panic("Something is wrong with your config type.")
+func New() *application {
+	return &application{
+		Viper: viper.New(),
 	}
 }
 
-var GetConfig = App.GetConfig
+func (a *application) Register(i interface{}) error {
+	return nil
+}
+
+var Register = instance.Register
+
+var instance *application
+
+func init() {
+	instance = New()
+}
+
+var Get = application.Get
+var Set = application.Set

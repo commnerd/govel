@@ -11,5 +11,8 @@ bin: tool cli
 	mv cli/cli bin/govel
 	cd bin && ./govel new test
 
+test: build
+	cd bin/test && ./tool test
+
 clean:
 	rm -fR ./bin

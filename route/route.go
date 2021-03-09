@@ -1,9 +1,8 @@
 package route
 
 type route struct {
-	method  string
-	path    string
-	route   string
-	name    string
-	handler string
+	path     string
+	method   string
+	handler  string
+	name     string
 }

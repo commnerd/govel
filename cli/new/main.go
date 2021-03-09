@@ -4,10 +4,12 @@ const MAIN_GO = `
 package main
 
 import (
-    "github.com/commnerd/govel"
+    "Govel"
+    "%s/controllers"
 )
 
 func main() {
-    govel.Go()
+    controllers.Init()
+    Govel.Go()
 }
 `

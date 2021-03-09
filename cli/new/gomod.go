@@ -7,6 +7,6 @@ go 1.15
 
 replace (
 	%s => ./
-	github.com/commnerd/govel => ../../
+	Govel => ../../
 )
 `

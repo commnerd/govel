@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/commnerd/govel/tool/serve"
+	"github.com/commnerd/govel/tool/test"
 
 	"github.com/spf13/cobra"
 )
@@ -20,6 +21,7 @@ var rootCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(serve.Cmd)
+	rootCmd.AddCommand(test.Cmd)
 }
 
 func main() {

@@ -1,11 +1,11 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/commnerd/govel/app"
+	"github.com/commnerd/govel/gerror"
 )
 
 func Serve() {
@@ -13,12 +13,11 @@ func Serve() {
 
 	hostAddr := ":" + strconv.Itoa(config.GetInt("main.port"))
 
-	// router := app.Get("router")
+	router, ok := app.Get("router").(route)
+	if !ok {
+		gerror.Throw("Router not properly implemented.")
+	}
 
-	// http.ListenAndServe(":8090", router)
-
-	fmt.Println(fmt.Sprintf("Serving: '%s'", hostAddr))
-
-	http.ListenAndServe(hostAddr, nil)
+	http.ListenAndServe(hostAddr, router)
 
 }
