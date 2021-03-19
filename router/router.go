@@ -7,9 +7,3 @@ import (
 type Router struct {
 	*viper.Viper
 }
-
-var instance *Router
-
-func init() {
-	instance = New()
-}

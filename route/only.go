@@ -1,6 +1,6 @@
 package route
 
-func (r *route) Only(methods []string) *route {
+func (r *routeStruct) Only(methods []string) *routeStruct {
 	r.only = methods
 	return r
 }

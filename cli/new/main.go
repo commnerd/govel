@@ -4,11 +4,10 @@ const MAIN_GO = `package main
 
 import (
     "govel"
-    "%s/controllers"
+    "govel/app"
 )
 
 func main() {
-    controllers.Init()
-    govel.Go()
+    govel.Go(app.New())
 }
 `

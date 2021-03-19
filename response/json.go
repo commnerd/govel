@@ -2,7 +2,6 @@ package response
 
 import (
 	"bytes"
-	"errors"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -17,7 +16,7 @@ func Json(i interface{}) Response {
 	case string:
 		response = Response{Response: jsonResponseFromString(input)}
 	default:
-		gerror.Check(errors.New("No handler for passed Json element."))
+		gerror.Throw("No handler for passed Json element.")
 	}
 
 	return response
@@ -34,8 +33,10 @@ func jsonBuildResponseBody(i interface{}) io.ReadCloser {
 	case string:
 		return ioutil.NopCloser(bytes.NewReader([]byte(input)))
 	default:
-		panic("JSON cannot be parsed.")
+		gerror.Throw("JSON cannot be parsed.")
 	}
+
+	return nil
 }
 
 func jsonResponseFromString(input string) *http.Response {

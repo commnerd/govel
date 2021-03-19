@@ -4,6 +4,7 @@ import (
 	"github.com/commnerd/govel/server"
 )
 
-func Go() {
+func Go(a app) {
+	bootstrap(a)
 	server.Serve()
 }

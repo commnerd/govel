@@ -2,11 +2,9 @@ package route
 
 import (
 	"strings"
-
-	"github.com/commnerd/govel/response"
 )
 
-func (rt *route) GetHandler(sHandler string) func(...interface{}) response.Response {
+func (rt *routeStruct) GetHandler(sHandler string) string {
 	structMethod := strings.Split(sHandler, "@")
 
 	return rt.methodMap[structMethod[1]]

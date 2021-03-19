@@ -1,5 +1,5 @@
 package route
 
-func (r *route) GetPath() string {
+func (r *routeStruct) GetPath() string {
 	return r.path
 }

@@ -1,5 +1,5 @@
 package route
 
-func (r *route) GetName() string {
+func (r *routeStruct) GetName() string {
 	return r.name
 }

@@ -4,8 +4,15 @@ import (
 	"os"
 	"testing"
 
+	gvlApp "github.com/commnerd/govel/app"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestMain(m *testing.M) {
+	app = gvlApp.New()
+	Bind(app)
+	os.Exit(m.Run())
+}
 
 func TestGetFileList(t *testing.T) {
 	writeDefaultTestFiles()
@@ -79,10 +86,12 @@ func TestReadInConfigs(t *testing.T) {
 	writeDefaultTestFiles()
 	defer cleanupDefaultTestFiles()
 
-	instance.ReadInConfigs("./test")
+	cfg := Get()
 
-	assert.Equal(t, "bar", instance.GetString("f1.foo"))
-	assert.Equal(t, "bar", instance.GetString("f2.foo"))
+	cfg.ReadInConfigs("./test")
+
+	assert.Equal(t, "bar", cfg.GetString("f1.foo"))
+	assert.Equal(t, "bar", cfg.GetString("f2.foo"))
 }
 
 func writeDefaultTestFiles() {

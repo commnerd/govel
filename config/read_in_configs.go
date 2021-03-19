@@ -15,6 +15,12 @@ func (c *Config) ReadInConfigs(path string) {
 	c.ReadConfig(bytes.NewBuffer([]byte(config)))
 }
 
+func ReadInConfigs(path string) {
+	cfg := Get()
+
+	cfg.ReadInConfigs(path)
+}
+
 func buildConfig(path string) string {
 	config := ""
 

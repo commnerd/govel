@@ -1,9 +1,9 @@
 package gerror
 
 import (
-	"reflect"
 	"errors"
 	"fmt"
+	"reflect"
 )
 
 func Throw(iError interface{}) {

@@ -8,15 +8,10 @@ type Config struct {
 	*viper.Viper
 }
 
-var instance *Config
-
 func New() *Config {
-	return &Config{
+	c := &Config{
 		Viper: viper.New(),
 	}
-}
-
-func init() {
-	instance = New()
-	instance.SetConfigType("yaml")
+	c.SetConfigType("yaml")
+	return c
 }

@@ -21,7 +21,7 @@ var Cmd = &cobra.Command{
 	Long:  desc,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 || len(args) > 1 {
-			cobra.CheckErr(errors.New("Govel's \"new\" command's only argument should be the name of the project you want to create."))
+			cobra.CheckErr(errors.New("\"new\" command's only argument should be the name of the project you want to create"))
 		}
 		baseDir := args[0]
 		bootstrapDirectoryStructure(baseDir)
@@ -42,27 +42,25 @@ func bootstrapDirectoryStructure(baseDir string) {
 		"resources",
 		"routes",
 		"storage",
-		"tests",
-		"tests/controllers",
 	}
 
 	for _, subDir := range subDirs {
 		path := strings.Join(strings.Split(baseDir+"/"+subDir, "/"), string(os.PathSeparator))
 		fmt.Printf("Creating subdir %s.\n", path)
-		cobra.CheckErr(os.Mkdir(fmt.Sprintf("%s", path), 0755))
+		cobra.CheckErr(os.Mkdir(path, 0755))
 	}
 }
 
 func addBaseFiles(baseDir string) {
-	writeFile(baseDir+"/main.go", fmt.Sprintf(MAIN_GO, baseDir))
+	writeFile(baseDir+"/main.go", MAIN_GO)
 	writeFile(baseDir+"/config/main.yml", CONFIG_MAIN)
 	writeFile(baseDir+"/controllers/root.go", CONTROLLERS_ROOT)
+	writeFile(baseDir+"/controllers/root_test.go", CONTROLLERS_ROOT_TEST)
 	writeFile(baseDir+"/controllers/init.go", CONTROLLERS_INIT)
 	writeFile(baseDir+"/routes/web.go", ROUTES_WEB)
+	writeFile(baseDir+"/routes/init.go", ROUTES_INIT)
 	writeFile(baseDir+"/go.mod", fmt.Sprintf(GOMOD, baseDir, baseDir))
-	writeFile(baseDir+"/tests/controllers/root_test.go", fmt.Sprintf(TESTS_CONTROLLERS_ROOT, baseDir))
 	addTool(baseDir)
-
 }
 
 func addTool(baseDir string) {

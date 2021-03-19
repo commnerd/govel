@@ -4,7 +4,7 @@ const ROUTES_WEB = `package routes
 
 import "govel/route"
 
-func init() {
+func web() {
 	route.Get("/", "RootController@index").Name("root")
 }
 `

@@ -1,15 +1,23 @@
 package router
 
-import "github.com/commnerd/govel/gerror"
+import (
+	"fmt"
+	"reflect"
+
+	"github.com/commnerd/govel/gerror"
+)
 
 func (r *Router) GetRoute(path string) route {
-	rt, ok := r.Viper.Get(path).(route)
+	iRt := r.Get(path)
 
+	if iRt == nil {
+		return nil
+	}
+
+	rt, ok := iRt.(route)
 	if !ok {
-		gerror.Throw("Not a route.")
+		gerror.Throw(fmt.Sprintf("\"%s\" not a route", reflect.TypeOf(rt).Name()))
 	}
 
 	return rt
 }
-
-var GetRoute = instance.GetRoute

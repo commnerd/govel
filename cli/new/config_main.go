@@ -1,5 +1,3 @@
 package new
 
-const CONFIG_MAIN = `main:
-	port: 80
-`
+const CONFIG_MAIN = `port: 80`

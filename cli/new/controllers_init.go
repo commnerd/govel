@@ -7,6 +7,6 @@ const CONTROLLERS_INIT = `package controllers
 import "govel"
 
 func Init() {
-	govel.RegisterController(&RootController{})
+	govel.RegisterController(RootController{})
 }
 `

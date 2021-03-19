@@ -7,9 +7,9 @@ import (
 	"govel/response"
 )
 
-type RootController struct{ govel.Controller }
+type RootController govel.Controller
 
-func (c *RootController) Index() response.Response {
+func (c RootController) Index() response.Response {
 	return response.Json("{\"status\":\"success\",\"data\":\"Wecome!\"}")
 }
 `

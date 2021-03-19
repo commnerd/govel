@@ -2,7 +2,7 @@ package route
 
 import "github.com/commnerd/govel/util"
 
-func (r *route) Except(iMethods ...interface{}) *route {
+func (r *routeStruct) Except(iMethods ...interface{}) *routeStruct {
 	sMethods := []string{}
 
 	for _, iMethod := range iMethods {
